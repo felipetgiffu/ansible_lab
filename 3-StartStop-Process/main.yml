@@ -52,18 +52,22 @@
 ####################### CHECK STATUS #######################        
    - name: Check status of NGINX process 
      shell: "systemctl status nginx"
-     register: process
+     register: process_nginx
      ignore_errors: yes
+     when: "'nginx' in name_process"
+   - debug:
+       var: process_nginx.stdout_lines 
      when: "'nginx' in name_process"
    
    - name: Check status of HTTPD process
      shell: "systemctl status httpd"
-     register: process
+     register: process_httpd
      ignore_errors: yes
      when: "'httpd' in name_process"
-   
    - debug:
-       var: process.stdout_lines 
+       var: process_httpd.stdout_lines 
+     when: "'nginx' in name_process" 
+
    
    - debug:
        msg: Não há HTTPD no Ubuntu. Somente nos RHEL.
