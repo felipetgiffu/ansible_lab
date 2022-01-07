@@ -46,7 +46,7 @@
        state: stopped
        enabled: no
      when: 
-       - "'Start' in status_process" 
+       - "'Stop' in status_process" 
        - "'httpd' in name_process"
        - ansible_distribution == 'RedHat'
 ####################### CHECK STATUS #######################        
