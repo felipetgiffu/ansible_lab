@@ -20,4 +20,5 @@
      register: process
    - debug:
        var: process.stdout_lines 
+     ignore_errors: yes
 ...
