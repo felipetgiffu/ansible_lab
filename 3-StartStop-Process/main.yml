@@ -28,5 +28,5 @@
      when: ansible_distribution == 'RedHat'
    - debug:
        var: process_ubuntu.stdout
-      when: ansible_distribution == 'Ubuntu'
+     when: ansible_distribution == 'Ubuntu'
 ...
