@@ -1,0 +1,135 @@
+#############################################################################################
+###   NAME:              RHEL_Patch_reboot                                                   #
+###   VERSION:           1.0                                                                 #
+###   DESCRIPTION:       Update patches (Kernel and Glib inclued                             #
+###   WHY:               Ansible Lab                                                         #
+###   CREATED BY:        Felipe Thomaz Giffu                                                 #
+###   PLATFORM:          Linux: Red Hat OR Linux with YUM installed                          #
+#############################################################################################
+---
+- name: Performing yum update on host(s)
+  hosts: ansible-rhel
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  any_errors_fatal: false
+  vars:
+        pre_update_script: /var/log/checklist/RHEL_pre_update.sh
+        post_update_script: /var/log/checklist/RHEL_post_update.sh
+##########################################################################
+## pre_update script
+##########################################################################
+  pre_tasks:
+    - name: Create the directory /var/log/checklist if it does not exist
+      file:
+        path: /var/log/checklist
+        state: directory
+        mode: '0775'
+    - name: Copying pre-update script to server
+      copy:
+        src: RHEL_pre_update.sh
+        dest: /var/log/checklist/RHEL_pre_update.sh
+        owner: root
+        group: root
+        mode: '0775'
+    - name: Checking if pre update script exist
+      stat:
+        path: '{{ pre_update_script }}'
+      register: pre_update_file
+    - name: Running pre update script
+      command: sh '{{ pre_update_script }}'
+      when: pre_update_file.stat.exists == true
+      ignore_errors: no
+###########################################################################
+## Check if the server has updates available to be installed
+###########################################################################
+  tasks:
+    - name: Checking patches available for updates
+      shell: yum list updates | awk 'f;/Updated Packages/{f=1;}' | awk '{ print $1 }'
+      changed_when: updates.stdout_lines | length > 0
+      register: updates
+###########################################################################
+## Display the patches available
+###########################################################################
+    - name: Display patches available to be installed
+      debug:
+        msg: "Found {{ updates.stdout_lines | length }} packages to be updated: {{ updates.stdout | replace('\n', '   ')  }}"
+ ###########################################################################
+ ## Installing Deltarpm
+ ###########################################################################
+    - name: Installing Deltarpm
+      yum:
+        name: deltarpm
+        state: latest
+ ###########################################################################
+ ## Installing all patches
+ ###########################################################################
+    - name: Updating all packages
+      yum:
+        name: '*'
+        state: latest
+      tags:
+        - skip_ansible_lint
+ ###########################################################################
+ ## Check if reboot is required
+ ###########################################################################
+    - name: Comparing last kernel and running kernel
+      shell: |
+        LAST_KERNEL=$(rpm -q --last kernel | perl -pe 's/^kernel-(\S+).*/$1/' | head -1)
+        CURRENT_KERNEL=$(uname -r)
+        if [[ $LAST_KERNEL != $CURRENT_KERNEL ]]; then
+          # Set reboot flag
+          touch /tmp/reboot
+        fi
+      tags:
+        - skip_ansible_lint
+###########################################################################
+## Reboot the server if required
+###########################################################################
+    - name: Checking if reboot flag exists
+      stat:
+        path: /tmp/reboot
+      register: reboot
+    - name: Clearing reboot flag
+      file:
+        path: /tmp/reboot
+        state: absent
+      when: reboot.stat.exists == true
+    - name: Rebooting the server
+      shell: sleep 2 && /sbin/shutdown -r now "Reboot required for updated kernel." && sleep 2
+      async: 20
+      poll: 0
+      when: reboot.stat.exists == true
+###########################################################################
+## Waiting the reboot be completed
+###########################################################################
+    - name: Waiting the server complete the reboot
+      wait_for_connection:
+        delay: 60
+        timeout: 240
+      when: reboot.stat.exists == true
+###########################################################################
+## post_update script
+###########################################################################
+  post_tasks:
+    - name: Copying post-update script to server
+      copy: src=RHEL_post_update.sh dest=/var/log/checklist/RHEL_post_update.sh owner=root group=root mode=775
+    - name: Checking if post update script exist
+      stat:
+        path: '{{ post_update_script }}'
+      register: post_update_file
+    - name: Running post update script
+      command: sh '{{ post_update_script }}'
+      when: post_update_file.stat.exists == true
+      ignore_errors: no
+    - name: Delete pre-update script
+      file:
+        path: /var/log/checklist/RHEL_pre_update.sh
+        state: absent
+    - name: Delete post-update script
+      file:
+        path: /var/log/checklist/RHEL_post_update.sh
+        state: absent
+    - debug:
+        msg: Security patch update completed.
+...
