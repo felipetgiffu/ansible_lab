@@ -26,7 +26,7 @@
         state: directory
         mode: '0775'
     - name: Copying pre-update script to server
-      sheel: "cd /var/log/checklist/ ; wget https://raw.githubusercontent.com/felipetgiffu/ansible_lab/main/1-Update_patches_withreboot/RHEL_post_update.sh"
+      sheel: "cd /var/log/checklist/ ; https://raw.githubusercontent.com/felipetgiffu/ansible_lab/main/1-Update_patches_withreboot/RHEL_pre_update.sh"
     - name: Checking if pre update script exist
       stat:
         path: '{{ pre_update_script }}'
@@ -108,7 +108,7 @@
 ###########################################################################
   post_tasks:
     - name: Copying post-update script to server
-      shel: "cd /tmp ; 
+      shel: "cd /tmp ; wget https://raw.githubusercontent.com/felipetgiffu/ansible_lab/main/1-Update_patches_withreboot/RHEL_post_update.sh"
     - name: Checking if post update script exist
       stat:
         path: '{{ post_update_script }}'
