@@ -1,0 +1,7 @@
+---
+- name: localhost
+  become: true
+  tasks:
+    - name: teste
+      shell: cat /tmp
+...
