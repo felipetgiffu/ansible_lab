@@ -18,7 +18,7 @@
    - name: Check status of process if system is RHEL
      shell: "systemctl status nginx"
      register: process
+     ignore_errors: yes
    - debug:
        var: process.stdout_lines 
-     ignore_errors: yes
 ...
