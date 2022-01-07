@@ -17,12 +17,16 @@
      when: "'Stop' in status_process"
    - name: Check status of process
      shell: "systemctl status nginx"
-     when: ansible_distribution == 'RedHat'
-     register: process
+     register: process_rhel
+     ignore_errors: yes
    - name: Check status of process
      shell: "apt status nginx"
-     register: process
-     when: ansible_distribution == 'Ubuntu'
+     register: process_ubuntu
+     ignore_errors: yes
    - debug:
-       var: process.stdout
+       var: process_rhel.stdout
+     ignore_errors: yes
+   - debug:
+       var: process_ubuntu.stdout
+     ignore_errors: yes
 ...
