@@ -47,15 +47,17 @@
 ###########################################################################
   tasks:
     - name: Checking patches available for updates
-      shell: yum list updates | awk 'f;/Updated Packages/{f=1;}' | awk '{ print $1 }'
-      changed_when: updates.stdout_lines | length > 0
+      shell: yum list updates 
+#| awk 'f;/Updated Packages/{f=1;}' | awk '{ print $1 }'
+#      changed_when: updates.stdout_lines | length > 0
       register: updates
 ###########################################################################
 ## Display the patches available
 ###########################################################################
     - name: Display patches available to be installed
       debug:
-        msg: "Found {{ updates.stdout_lines | length }} packages to be updated: {{ updates.stdout | replace('\n', '   ')  }}"
+        msg: " Found {{ updates.stdout | replace('\n', '   ')  }}"
+#Found {{ updates.stdout_lines | length }} packages to be updated: {{ updates.stdout | replace('\n', '   ')  }}"
  ###########################################################################
  ## Installing all patches
  ###########################################################################
