@@ -15,18 +15,18 @@
        state: stopped
        enabled: no
      when: "'Stop' in status_process"
-   - name: Check status of process
+   - name: Check status of process if system is RHEL
      shell: "systemctl status nginx"
      register: process_rhel
      when: ansible_distribution == 'RedHat'
-   - name: Check status of process
+   - name: Check status of process if system is Ubuntu
      shell: "apt status nginx"
      register: process_ubuntu
      when: ansible_distribution == 'Ubuntu'
    - debug:
        var: process_rhel.stdout
-     ignore_errors: yes
+     when: ansible_distribution == 'RedHat'
    - debug:
        var: process_ubuntu.stdout
-     ignore_errors: yes
+      when: ansible_distribution == 'Ubuntu'
 ...
