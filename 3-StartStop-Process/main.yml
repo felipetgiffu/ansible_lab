@@ -66,8 +66,9 @@
      when: "'httpd' in name_process"
    - debug:
        var: process_httpd.stdout_lines 
-     when: "'httpd' in name_process" 
-
+     when: 
+       - "'httpd' in name_process" 
+       - ansible_distribution == 'RedHat'
    
    - debug:
        msg: Não há HTTPD no Ubuntu. Somente nos RHEL.
