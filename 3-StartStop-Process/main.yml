@@ -8,13 +8,13 @@
        name: httpd
        state: started
        enabled: yes
-     when: "'start' in status_process"
+     when: "'Start' in status_process"
    - name: Stop service nginx
      service:
        name: httpd
        state: stopped
        enabled: no
-     when: "'stop' in status_process"
+     when: "'Stop' in status_process"
    - name: Check status of process
      shell: "systemctl status nginx"
      when: ansible_distribution == 'RedHat'
