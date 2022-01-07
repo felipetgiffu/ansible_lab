@@ -48,25 +48,33 @@
   tasks:
     - name: Checking patches available for updates
       shell: yum list updates 
-#| awk 'f;/Updated Packages/{f=1;}' | awk '{ print $1 }'
-#      changed_when: updates.stdout_lines | length > 0
       register: updates
+      when: ansible_distribution == "RedHat"
+    - name: Checking patches available for updates
+      shell: yum list updates 
+      register: updates
+      when: ansible_distribution == "Ubuntu"  
 ###########################################################################
 ## Display the patches available
 ###########################################################################
     - name: Display patches available to be installed
       debug:
         msg: " Found {{ updates.stdout | replace('\n', '   ')  }}"
-#Found {{ updates.stdout_lines | length }} packages to be updated: {{ updates.stdout | replace('\n', '   ')  }}"
- ###########################################################################
- ## Installing all patches
- ###########################################################################
+###########################################################################
+## Installing all patches
+###########################################################################
     - name: Updating all packages
       yum:
         name: '*'
         state: latest
       tags:
         - skip_ansible_lint
+      when: ansible_distribution == "RedHat"
+   - name: Upgrade all packages 
+     apt:
+       name: "*"
+       state: latest
+     when: ansible_distribution == "Ubuntu"
  ###########################################################################
  ## Check if reboot is required
  ###########################################################################
