@@ -1,8 +1,0 @@
----
-- name: localhost
-  hosts: localhost
-  become: true
-  tasks:
-    - name: teste
-      shell: "id"
-...
