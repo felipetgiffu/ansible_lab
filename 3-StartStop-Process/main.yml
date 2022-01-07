@@ -1,4 +1,5 @@
 ---
+####################### START/STOP #######################
 - name: Start and Stop process
   hosts: all
   become: true
@@ -37,12 +38,13 @@
        - "'Start' in status_process" 
        - "'httpd' in name_process"
        - ansible_distribution == 'RedHat'
+####################### CHECK STATUS #######################        
    - name: Check status of NGINX process 
      shell: "systemctl status nginx"
      register: process
      ignore_errors: yes
      When: "'nginx' in name_process"
-    - name: Check status of HTTPD process
+   - name: Check status of HTTPD process
      shell: "systemctl status httpd"
      register: process
      ignore_errors: yes
