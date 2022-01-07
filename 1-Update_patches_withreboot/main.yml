@@ -8,7 +8,7 @@
 #############################################################################################
 ---
 - name: Performing yum update on host(s)
-  hosts: ansible-rhel
+  hosts: all
   remote_user: ansible
   become: yes
   become_method: sudo
