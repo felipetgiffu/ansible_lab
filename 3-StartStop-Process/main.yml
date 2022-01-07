@@ -24,9 +24,9 @@
      register: process_ubuntu
      when: ansible_distribution == 'Ubuntu'
    - debug:
-       var: process_rhel.stdout
+       var: process_rhel.stdout | replace('\n', '   ') 
      when: ansible_distribution == 'RedHat'
    - debug:
-       var: process_ubuntu.stdout
+       var: process_ubuntu.stdout | replace('\n', '   ') 
      when: ansible_distribution == 'Ubuntu'
 ...
