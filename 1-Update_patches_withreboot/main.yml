@@ -51,7 +51,7 @@
       register: updates
       when: ansible_distribution == "RedHat"
     - name: Checking patches available for updates
-      shell: yum list updates 
+      shell: apt list updates 
       register: updates
       when: ansible_distribution == "Ubuntu"  
 ###########################################################################
