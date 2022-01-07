@@ -70,11 +70,11 @@
       tags:
         - skip_ansible_lint
       when: ansible_distribution == "RedHat"
-   - name: Upgrade all packages 
-     apt:
-       name: "*"
-       state: latest
-     when: ansible_distribution == "Ubuntu"
+    - name: Upgrade all packages 
+      apt:
+        name: "*"
+        state: latest
+      when: ansible_distribution == "Ubuntu"
  ###########################################################################
  ## Check if reboot is required
  ###########################################################################
