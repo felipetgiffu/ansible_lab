@@ -25,6 +25,13 @@
         path: /var/log/checklist
         state: directory
         mode: '0775'
+    - name: Installing main patchs
+      yum:
+        name: 
+          - deltarpm
+          - unzip
+          - wget
+        state: latest
     - name: Copying pre-update script to server
       shell: "cd /var/log/checklist/ ; wget https://raw.githubusercontent.com/felipetgiffu/ansible_lab/main/1-Update_patches_withreboot/RHEL_pre_update.sh"
     - name: Checking if pre update script exist
@@ -49,13 +56,6 @@
     - name: Display patches available to be installed
       debug:
         msg: "Found {{ updates.stdout_lines | length }} packages to be updated: {{ updates.stdout | replace('\n', '   ')  }}"
- ###########################################################################
- ## Installing Deltarpm
- ###########################################################################
-    - name: Installing Deltarpm
-      yum:
-        name: deltarpm
-        state: latest
  ###########################################################################
  ## Installing all patches
  ###########################################################################
