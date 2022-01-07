@@ -71,6 +71,8 @@
        - ansible_distribution == 'RedHat'
    
    - debug:
-       msg: Não há HTTPD no Ubuntu. Somente nos RHEL. No Ubutun é necessário instalar e configurar o servico Apache2
-     when: "'httpd' in name_process"
+       msg: Não há servico HTTPD no Ubuntu. Somente nos RHEL. No Ubutun é necessário instalar e configurar o servico Apache2
+     when: 
+       - "'httpd' in name_process"
+       - ansible_distribution == 'Ubuntu'
 ...
