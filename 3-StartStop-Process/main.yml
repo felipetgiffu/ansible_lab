@@ -17,8 +17,8 @@
      when: "'Stop' in status_process"
    - name: Check status of process
      shell: "systemctl status nginx"
-     register: process
      when: ansible_distribution == 'RedHat'
+     register: process
    - name: Check status of process
      shell: "apt status nginx"
      register: process
