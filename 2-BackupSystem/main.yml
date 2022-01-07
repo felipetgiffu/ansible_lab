@@ -42,6 +42,7 @@
 
   - name: Backup /root/anaconda-ks.cfg file
     shell: cp /root/anaconda-ks.cfg /tmp/config_backup/
+    ignore_errors: yes
 
   - name: Backup lsblk --fs Info
     shell: lsblk --fs >> /tmp/config_backup/lsblk-config.txt
