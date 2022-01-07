@@ -50,10 +50,4 @@
     archive:
       path: /tmp/config_backup
       dest: /tmp/{{ ansible_hostname }}_config_backup.tgz
-
-  - name: Copy Configs to Centralized Location
-    fetch:
-      src: /tmp/{{ ansible_hostname }}_config_backup.tgz
-      dest: /tmp/
-      flat: yes
 ...
