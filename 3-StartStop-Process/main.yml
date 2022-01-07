@@ -8,7 +8,13 @@
        name: nginx
        state: started
        enabled: yes
-     when: "'Start' in status_process"
+     when: "'Start' in status_process"  and "'nginx' in name_process"
+   - name: Start service httpd
+     service:
+       name: httpd
+       state: started
+       enabled: yes
+     when: "'Start' in status_process" and "'httpd' in name_process" and "ansible_distribution == 'RedHat'"
    - name: Stop service nginx
      service:
        name: nginx
