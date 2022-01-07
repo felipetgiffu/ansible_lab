@@ -66,5 +66,6 @@
        var: process.stdout_lines 
    
    - debug:
-       msg: Não há HTTPD no Ubuntu. Somente nos RHEL. 
+       msg: Não há HTTPD no Ubuntu. Somente nos RHEL.
+     when: "'httpd' in name_process"
 ...
