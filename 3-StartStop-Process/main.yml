@@ -20,6 +20,7 @@
      when: 
        - "'Start' in status_process"
        - "'nginx' in name_process"
+   
    - name: Start service httpd
      service:
        name: httpd
@@ -29,6 +30,7 @@
        - "'Start' in status_process" 
        - "'httpd' in name_process"
        - ansible_distribution == 'RedHat'
+   
    - name: Stop service nginx
      service:
        name: nginx
@@ -37,6 +39,7 @@
      when: 
        - "'Stop' in status_process"
        - "'nginx' in name_process"
+   
    - name: Stop service httpd
      service:
        name: httpd
@@ -51,14 +54,17 @@
      shell: "systemctl status nginx"
      register: process
      ignore_errors: yes
-     When: "'nginx' in name_process"
+     when: "'nginx' in name_process"
+   
    - name: Check status of HTTPD process
      shell: "systemctl status httpd"
      register: process
      ignore_errors: yes
-     When: "'httpd' in name_process"
+     when: "'httpd' in name_process"
+   
    - debug:
        var: process.stdout_lines 
+   
    - debug:
        msg: Não há HTTPD no Ubuntu. Somente nos RHEL. 
 ...
