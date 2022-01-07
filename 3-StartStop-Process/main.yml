@@ -5,13 +5,13 @@
   tasks:
    - name: Start service nginx
      service:
-       name: httpd
+       name: nginx
        state: started
        enabled: yes
      when: "'Start' in status_process"
    - name: Stop service nginx
      service:
-       name: httpd
+       name: nginx
        state: stopped
        enabled: no
      when: "'Stop' in status_process"
