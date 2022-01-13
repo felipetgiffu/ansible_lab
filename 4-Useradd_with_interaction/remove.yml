@@ -1,0 +1,15 @@
+---
+  - name: Removendo usuário
+    hosts: all
+    become: yes
+
+    tasks:
+    
+      - name: Removendo o usuário
+        ansible.builtin.user:
+          name: "{{ usuario }}"
+          state: absent
+          remove: yes
+      - name: Deletando o usuário por completo
+        shell: "rm -rf /home/{{ usuario }}"
+...
