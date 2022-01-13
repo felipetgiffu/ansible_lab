@@ -1,8 +1,8 @@
 ---
-- import_playbook: playbooks/dynatrace/dyna_ativarOneAgentClusterAFront.yml
+- import_playbook: user-add-interativo.yml
   become: yes
   when: "'Adicionar' in status_user"
-- import_playbook: playbooks/dynatrace/dyna_ativarOneAgentClusterARetaguarda.yml
+- import_playbook: remove.yml
   become: yes
   when: "'Remover' in status_user"
 ...
