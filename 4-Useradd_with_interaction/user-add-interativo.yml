@@ -2,7 +2,7 @@
   - name: Adicionar usuário no Red Hat
     hosts: all
     become: yes
-    become_user: root
+    #become_user: root
 
     tasks:
       - name: Adicionar usuário
