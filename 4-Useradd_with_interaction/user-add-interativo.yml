@@ -14,7 +14,6 @@
         shell: "chage -M 90 {{ usuario }}"
 
       - name: Gerando senha
-        delegate_to: localhost
         shell: date +%s | sha256sum | base64 | head -c 15
         register: _senha
 
