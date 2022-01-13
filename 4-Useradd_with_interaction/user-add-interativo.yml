@@ -1,6 +1,6 @@
 ---
   - name: Adicionar usuário no Red Hat
-    hosts: ALL-HOSTS
+    hosts: all
     become: yes
     become_user: root
 
