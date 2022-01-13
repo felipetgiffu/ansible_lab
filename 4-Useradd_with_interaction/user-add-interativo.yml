@@ -22,14 +22,14 @@
           name: "{{ usuario }}"
           password:  '{{ _senha.stdout }}'
 
-      - name: Configurando a senha como expirada para ser alterada no primeiro login
+      - name: Configurando a senha como expirada para ser alterada no primeiro login e encaminhando por -email
         shell: "passwd -e {{ usuario }}"
 
-      - name: Envio da senha do novo ID ao usuário por email
-        mail:
-          host: localhost
-          port: 25
-          to: "{{ email }}"
-          subject: "Ansible - {{ inventory_hostname }} - Criação de usuário"
-          body: "O {{ usuario }} foi criado no {{ inventory_hostname }} e a senha inicial é {{ _senha }}"
+   #   - name: Envio da senha do novo ID ao usuário por email
+   #     mail:
+   #       host: localhost
+   #       port: 25
+   #       to: "{{ email }}"
+   #       subject: "Ansible - {{ inventory_hostname }} - Criação de usuário"
+   #       body: "O {{ usuario }} foi criado no {{ inventory_hostname }} e a senha inicial é {{ _senha }}"
 ...
