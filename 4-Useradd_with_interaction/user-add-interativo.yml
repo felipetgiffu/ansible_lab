@@ -1,0 +1,36 @@
+---
+  - name: Adicionar usuário no Red Hat
+    hosts: ALL-HOSTS
+    become: yes
+    become_user: root
+
+    tasks:
+      - name: Adicionar usuário
+        ansible.builtin.user:
+          name: "{{ usuario }}"
+          comment: "{{ nome }}/{{ email }}"
+
+      - name: Configurando máximo data para expirar a senha em 90 dias
+        shell: "chage -M 90 {{ usuario }}"
+
+      - name: Gerando senha
+        delegate_to: localhost
+        shell: date +%s | sha256sum | base64 | head -c 15
+        register: _senha
+
+      - name: Configurando senha do usuário
+        user:
+          name: "{{ usuario }}"
+          password:  '{{ _senha.stdout }}'
+
+      - name: Configurando a senha como expirada para ser alterada no primeiro login
+        shell: "passwd -e {{ usuario }}"
+
+      - name: Envio da senha do novo ID ao usuário por email
+        mail:
+          host: localhost
+          port: 25
+          to: "{{ email }}"
+          subject: "Ansible - {{ inventory_hostname }} - Criação de usuário"
+          body: "O {{ usuario }} foi criado no {{ inventory_hostname }} e a senha inicial é {{ _senha }}"
+...
