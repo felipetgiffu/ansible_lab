@@ -1,0 +1,105 @@
+---
+  - name: Correção de Politicas - Servidores RHEL
+    hosts: all
+    become: yes
+    become_user: root
+    tasks:
+############# SELinux update
+      - name: Certifique-se de que o SELinux esteja definido para o modo Permissive
+        ansible.builtin.lineinfile:
+          path: /etc/selinux/config
+          regexp: '^SELINUX='
+          line: SELINUX=permissive
+
+      - name: Atualizar o SELinux para o modo Permissive
+        shell: setenforce 0
+
+############ /tmp - Configurações
+      - name: Corrige permissão do /tmp para 1777
+        ansible.builtin.file:
+          path: /tmp
+          owner: root
+          group: root
+          mode: '1777'
+
+############# Remover o grupo wheel do /etc/sudoers
+      - name: Certifique-se de que o grupo wheel não esteja na configuração do sudoers
+        ansible.builtin.lineinfile:
+          path: /etc/sudoers
+          state: absent
+          regexp: '^%wheel'
+        ignore_errors: yes
+
+#########  Mensagem de boas vindas/alerta da empresa ao logar no servidor
+      - name: Atualizando mensagme de boas vindas/alerta ao logar no servidor
+        ansible.builtin.lineinfile:
+          path: /etc/motd
+          line: "Seja bem vindo ao $(hostname). Pedimos que seja prudente na utilização do sistema e em caso de dúvida entre em contato com o time de suporte através do ramal 1234"
+          create: yes
+
+######### Altera permissão de arquivos com 777 para 775
+      - name: Altera permissão de arquivos com 777 para 775
+        shell: find / -type f -perm 0777 -not -path "/proc/*" -exec chmod 775 {} \;
+
+######### Remove arquivos do /tmp com mais de 1 mês
+      - name: Localizar no /tmp arquivos com mais de 60 dias e deletar
+        shell: find /tmp -type f -mtime +60 -delete
+        args:
+          warn: false
+
+######### ID - Configurações
+      - name: Atualizar o "MAX EXPIRATION DATE" para 90 dias caso seja maior
+        shell: for user in $(awk -F ":" '$5>90 {print $1}' /etc/shadow); do chage -M 90 $user; done
+
+      - name: Atualizar o "Number of days of warning before password expires" para 7 dias caso seja menor
+        shell: for user in $(awk -F ":" '$6<7 {print $1}' /etc/shadow); do chage -W 7 $user; done
+
+      - name: Atualizar o "Minimum number of days between password change" para 1 dia caso seja menor
+        shell: for user in $(awk -F ":" '$4<1 {print $1}' /etc/shadow); do chage -m 1 $user; done
+
+######### Configurar arquivos de CRON com permissão 600 para somente o ROOT ter acesso
+      - name: Configurar permissão 600 em arquivos de CRON para restringir o acesso ao owner
+        shell: cd /etc; chmod 700 cron.d cron.daily cron.deny cron.hourly cron.monthly crontab cron.weekly; chmod 600 crontab
+
+######## SSH - Configurações
+      - name: Verifique se "PermitEmptyPasswords no" no /etc/ssh/sshd_config se indefinido
+        lineinfile:
+          state: absent
+          path: "/etc/ssh/sshd_config"
+          regexp: "#PermitEmptyPasswords no"
+        check_mode: true
+        changed_when: false
+        register: check
+
+      - name: Definir "PermitEmptyPasswords no" no /etc/ssh/sshd_config se indefinido
+        shell: sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/' /etc/ssh/sshd_config
+        when: check.found == 1
+        args:
+          warn: false
+
+      - name: Verifique se "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" no /etc/ssh/sshd_config se indefinido
+        lineinfile:
+          state: absent
+          path: "/etc/ssh/sshd_config"
+          regexp: "Ciphers aes128-ctr,aes192-ctr,aes256-ctr"
+        check_mode: true
+        changed_when: false
+        register: check
+
+      - name: Definir "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" no /etc/ssh/sshd_config se indefinido
+        shell: sed -i '/# Ciphers/a Ciphers aes128-ctr,aes192-ctr,aes256-ctr' /etc/ssh/sshd_config
+        when: check.found == 0
+        args:
+          warn: false
+
+      - name: Reiniciando serviço do SSH
+        ansible.builtin.systemd:
+          name: sshd
+          state: restarted
+          
+#######  Alterar a permissão do /boot para 600 para restringir o acesso aos arquivos ao root
+      - name: Restringindo acesso do "/boot" ao root com permissão 600
+        shell: chmod 600 /boot
+        args:
+          warn: false
+...
