@@ -37,9 +37,6 @@
           line: "Seja bem vindo ao $(hostname). Pedimos que seja prudente na utilização do sistema e em caso de dúvida entre em contato com o time de suporte através do ramal 1234"
           create: yes
 
-######### Altera permissão de arquivos com 777 para 775
-      - name: Altera permissão de arquivos com 777 para 775
-        shell: find / -type f -perm 0777 -not -path "/proc/*" -exec chmod 775 {} \;
 
 ######### Remove arquivos do /tmp com mais de 1 mês
       - name: Localizar no /tmp arquivos com mais de 60 dias e deletar
