@@ -1,0 +1,9 @@
+---
+- name: Executar o sript para execucao do playbook
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Executando script
+      become_user: ansible
+      shell: '/etc/ansible/playbooks/6-website_monitor/linuxServerMonitor.yml; /var/www/html/webmonitor/script/data-insert.sh'
+...
