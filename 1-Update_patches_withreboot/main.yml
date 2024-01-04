@@ -28,7 +28,6 @@
     - name: Installing main patchs
       yum:
         name: 
-          - deltarpm
           - unzip
           - wget
         state: latest
