@@ -9,9 +9,9 @@
 ---
 - name: Performing yum update on host(s)
   hosts: all
-  remote_user: ansible
-  become: yes
-  become_method: sudo
+#  remote_user: ansible
+#  become: yes
+#  become_method: sudo
   any_errors_fatal: false
   vars:
         pre_update_script: /var/log/checklist/RHEL_pre_update.sh
