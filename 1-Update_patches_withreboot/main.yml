@@ -7,7 +7,7 @@
 ###   PLATFORM:          Linux: Red Hat OR Linux with YUM installed                          #
 #############################################################################################
 ---
-- name: Performing yum update on host(s)
+- name: Playbook responsavel para atualizacao do sistema operacional
   hosts: all
 #  remote_user: ansible
 #  become: yes
@@ -20,24 +20,24 @@
 ## pre_update script
 ##########################################################################
   pre_tasks:
-    - name: Create the directory /var/log/checklist if it does not exist
+    - name: Criando o diretorio /var/log/checklist se não existir
       file:
         path: /var/log/checklist
         state: directory
         mode: '0775'
-    - name: Installing main patchs
+    - name: Instalando os principais patches
       yum:
         name: 
           - unzip
           - wget
         state: latest
-    - name: Copying pre-update script to server
+    - name: Fazendo o downloaad do script pre-update para o servidor
       shell: "cd /var/log/checklist/ ; wget https://raw.githubusercontent.com/felipetgiffu/ansible_lab/main/1-Update_patches_withreboot/RHEL_pre_update.sh"
-    - name: Checking if pre update script exist
+    - name: Validando se o script foi baixado corretamente e esta no diretorio correto
       stat:
         path: '{{ pre_update_script }}'
       register: pre_update_file
-    - name: Running pre update script
+    - name: Executando o script de pre atualização
       command: sh '{{ pre_update_script }}'
       when: pre_update_file.stat.exists == true
       ignore_errors: no
@@ -45,20 +45,20 @@
 ## Check if the server has updates available to be installed
 ###########################################################################
   tasks:
-    - name: Checking patches available for updates
+    - name: Validando os patches disponiveis para serem atualizados
       shell: yum list updates 
       register: updates
       when: ansible_distribution == "RedHat"
 ###########################################################################
 ## Display the patches available
 ###########################################################################
-    - name: Display patches available to be installed
+    - name: Abaixo será listado os patches disponiveis para serem atualizados
       debug:
         msg: " Found {{ updates.stdout | replace('\n', '   ')  }}"
 ###########################################################################
 ## Installing all patches
 ###########################################################################
-    - name: Updating all packages
+    - name: Atualizando todos os patches
       yum:
         name: '*'
         state: latest
@@ -68,7 +68,7 @@
  ###########################################################################
  ## Check if reboot is required
  ###########################################################################
-    - name: Comparing last kernel and running kernel
+    - name: Comparando o Kernel antigo com o Kernel Atual
       shell: |
         LAST_KERNEL=$(rpm -q --last kernel | perl -pe 's/^kernel-(\S+).*/$1/' | head -1)
         CURRENT_KERNEL=$(uname -r)
@@ -81,24 +81,24 @@
 ###########################################################################
 ## Reboot the server if required
 ###########################################################################
-    - name: Checking if reboot flag exists
+    - name: Validando os arquivos pré reboot
       stat:
         path: /tmp/reboot
       register: reboot
-    - name: Clearing reboot flag
+    - name: Validando os arquivos pré reboot 2
       file:
         path: /tmp/reboot
         state: absent
       when: reboot.stat.exists == true
-    - name: Rebooting the server
-      shell: sleep 2 && /sbin/shutdown -r now "Reboot required for updated kernel." && sleep 2
+    - name: Rebootando Servidor
+      shell: sleep 2 && /sbin/shutdown -r now "Reboot é necessario para atualizar o Kernel. Iremos rebootar o sistema." && sleep 2
       async: 20
       poll: 0
       when: reboot.stat.exists == true
 ###########################################################################
 ## Waiting the reboot be completed
 ###########################################################################
-    - name: Waiting the server complete the reboot
+    - name: Aguarde em quanto o reboot é finalizado e o servidor volte a ficar acessivel
       wait_for_connection:
         delay: 60
         timeout: 240
@@ -107,24 +107,24 @@
 ## post_update script
 ###########################################################################
   post_tasks:
-    - name: Copying post-update script to server
+    - name: Baixando o script post-update para o servidor
       shell: "cd /tmp ; wget https://raw.githubusercontent.com/felipetgiffu/ansible_lab/main/1-Update_patches_withreboot/RHEL_post_update.sh"
-    - name: Checking if post update script exist
+    - name: Validando se o script post-update foi baixado e esta no local correto
       stat:
         path: '{{ post_update_script }}'
       register: post_update_file
-    - name: Running post update script
+    - name: Executando o script post-update
       command: sh '{{ post_update_script }}'
       when: post_update_file.stat.exists == true
       ignore_errors: no
-    - name: Delete pre-update script
+    - name: Deletando o script pre-update pois o mesmo não sera mais necessário
       file:
         path: /var/log/checklist/RHEL_pre_update.sh
         state: absent
-    - name: Delete post-update script
+    - name: Deletando o script post-update pois o mesmo não sera mais necessário
       file:
         path: /var/log/checklist/RHEL_post_update.sh
         state: absent
     - debug:
-        msg: Security patch update completed.
+        msg: A ATUALIZACAO DE PATCH FOI CONCLUIDA COM SUCESSO
 ...
