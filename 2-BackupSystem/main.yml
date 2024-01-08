@@ -17,7 +17,7 @@
       state: directory
       mode: '0700'
 
-  - name: Backup /etc Directory
+  - name: Backup etc Directory
     archive:
       path: /etc
       dest: /tmp/config_backup/{{ ansible_hostname }}-etc.tgz
