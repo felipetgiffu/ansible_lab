@@ -12,16 +12,16 @@
   hosts: all
   become: true
   tasks:
-   - name: Start service nginx
+   - name: Start no serviço tuned.service
      service:
-       name: nginx
+       name: tuned.service
        state: started
        enabled: yes
      when: 
        - "'Start' in status_process"
-       - "'nginx' in name_process"
+       - "'tuned.service' in name_process"
    
-   - name: Start service httpd
+   - name: Start no serviço httpd
      service:
        name: httpd
        state: started
@@ -31,16 +31,16 @@
        - "'httpd' in name_process"
        - ansible_distribution == 'RedHat'
    
-   - name: Stop service nginx
+   - name: Stop no serviço tuned.service
      service:
-       name: nginx
+       name: tuned.service
        state: stopped
        enabled: no
      when: 
        - "'Stop' in status_process"
-       - "'nginx' in name_process"
+       - "'tuned.service' in name_process"
    
-   - name: Stop service httpd
+   - name: Stop no serviço httpd
      service:
        name: httpd
        state: stopped
@@ -50,16 +50,16 @@
        - "'httpd' in name_process"
        - ansible_distribution == 'RedHat'
 ####################### CHECK STATUS #######################        
-   - name: Check status of NGINX process 
-     shell: "systemctl status nginx"
+   - name: Checkar o status do serviço tuned.service 
+     shell: "systemctl status tuned.service"
      register: process_nginx
      ignore_errors: yes
-     when: "'nginx' in name_process"
+     when: "'tuned.service' in name_process"
    - debug:
        var: process_nginx.stdout_lines 
-     when: "'nginx' in name_process"
+     when: "'tuned.service' in name_process"
    
-   - name: Check status of HTTPD process
+   - name: Checkar o status do serviço httpd
      shell: "systemctl status httpd"
      register: process_httpd
      ignore_errors: yes
