@@ -31,4 +31,8 @@
    #       to: "{{ email }}"
    #       subject: "Ansible - {{ inventory_hostname }} - Criação de usuário"
    #       body: "O {{ usuario }} foi criado no {{ inventory_hostname }} e a senha inicial é {{ _senha }}"
+      - name: Abaixo será listado os patches disponiveis para serem atualizados
+        debug:
+          msg: " A senha esta sendo enviada para o e-mail cadastrado"
+
 ...
