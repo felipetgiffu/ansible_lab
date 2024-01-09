@@ -40,8 +40,8 @@
 ######### Remove arquivos do /tmp com mais de 1 mês
       - name: Localizar no /tmp arquivos com mais de 60 dias e deletar
         shell: find /tmp -type f -mtime +60 -delete
-        args:
-          warn: false
+#        args:
+#          warn: false
 
 ######### ID - Configurações
       - name: Atualizar o "MAX EXPIRATION DATE" para 90 dias caso seja maior
