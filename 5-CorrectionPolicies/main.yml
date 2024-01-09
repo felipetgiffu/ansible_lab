@@ -98,4 +98,7 @@
         shell: chmod 600 /boot
   #      args:
   #        warn: false
+      - name: As politicas foram atualizadas com sucesso
+        debug:
+          msg: " 1-  Certifique-se de que o SELinux esteja definido para o modo Permissive / 2- Permissão do /tmp deverá ser 1777 / 3- Não deverá existir o grupo wheel /  4- Deverá ter a mensagem de boas vindas/alerta da empresa ao logar no servidor / 5- Remove arquivos do /tmp com mais de 1 mês / 6- Usuários devera expirar a cada 90 dias / 6.1- Usuarios devem ser alertados / 7 dias antes da senha expirar / 7- Crontab deverá ter permissao 600 (somente o root ter acesso) / 8- Devera estar configurado PermitEmptyPasswords no no /etc/ssh/sshd_config se indefinido / 9- Definir Ciphers aes128-ctr,aes192-ctr,aes256-ctr no /etc/ssh/sshd_config se indefinido / 10- Permissão do /boot para 600 para restringir o acesso aos arquivos ao root"
 ...
