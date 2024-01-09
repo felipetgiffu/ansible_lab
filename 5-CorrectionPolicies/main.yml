@@ -70,8 +70,8 @@
       - name: Definir "PermitEmptyPasswords no" no /etc/ssh/sshd_config se indefinido
         shell: sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/' /etc/ssh/sshd_config
         when: check.found == 1
-        args:
-          warn: false
+ #       args:
+ #         warn: false
 
       - name: Verifique se "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" no /etc/ssh/sshd_config se indefinido
         lineinfile:
@@ -85,8 +85,8 @@
       - name: Definir "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" no /etc/ssh/sshd_config se indefinido
         shell: sed -i '/# Ciphers/a Ciphers aes128-ctr,aes192-ctr,aes256-ctr' /etc/ssh/sshd_config
         when: check.found == 0
-        args:
-          warn: false
+  #      args:
+  #        warn: false
 
       - name: Reiniciando serviço do SSH
         ansible.builtin.systemd:
@@ -96,6 +96,6 @@
 #######  Alterar a permissão do /boot para 600 para restringir o acesso aos arquivos ao root
       - name: Restringindo acesso do "/boot" ao root com permissão 600
         shell: chmod 600 /boot
-        args:
-          warn: false
+  #      args:
+  #        warn: false
 ...
