@@ -17,10 +17,10 @@
       state: directory
       mode: '0700'
 
-  - name: Backup etc Directory
-    community.general.archive:
-      path: /etc
-      dest: /tmp/config_backup/{{ ansible_hostname }}-etc.tgz
+#  - name: Backup etc Directory
+#    archive:
+#      path: /etc
+#      dest: /tmp/config_backup/{{ ansible_hostname }}-etc.tgz
 
   - name: Backup Network Interface Info
     shell: ip a >> /tmp/config_backup/interface-config.txt
@@ -47,8 +47,8 @@
   - name: Backup lsblk --fs Info
     shell: lsblk --fs >> /tmp/config_backup/lsblk-config.txt
 
-  - name: Backup TAR Directory
-    community.general.archive:
-      path: /tmp/config_backup
-      dest: /tmp/{{ ansible_hostname }}_config_backup.tgz
+#  - name: Backup TAR Directory
+#    community.general.archive:
+#      path: /tmp/config_backup
+#      dest: /tmp/{{ ansible_hostname }}_config_backup.tgz
 ...
