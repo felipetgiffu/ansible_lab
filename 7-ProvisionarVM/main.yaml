@@ -18,4 +18,5 @@
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
     - name: Provisionando Maquina Virtual (VM)
       shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
+      ignore_errors: yes
 ...
