@@ -18,6 +18,7 @@
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
     - name: Provisionando Maquina Virtual (VM)
-      command: sh '{{ script }}'
-      ignore_errors: no
+      shell: sh '{{ script }}'
+      ignore_errors: true
+      register: error
 ...
