@@ -1,0 +1,12 @@
+---
+- name: Executar o sript para execucao do playbook
+  hosts: 192.168.1.16
+  become: true
+  tasks:
+    - name: Preparando para provisionar a Maquina Virtual (VM)
+      shell: 'cd /Users/felipegiffu/Desktop/VMs'
+    - name: Aguarde em quanto provisionamos a imagem da Maquina Virtual (VM)
+      shell: 'vagrant init centos/7'
+    - name: Provisionando Maquina Virtual (VM)
+      shell: 'vagrant up'
+...
