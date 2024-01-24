@@ -18,6 +18,6 @@
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
     - name: Provisionando Maquina Virtual (VM)
-      shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
+      command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
       ignore_errors: true
 ...
