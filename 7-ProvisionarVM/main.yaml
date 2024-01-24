@@ -17,5 +17,5 @@
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
     - name: Provisionando Maquina Virtual (VM)
-      shell: 'vagrant up --provider=virtualbox'
+      shell: '/usr/local/bin/vagrant up --provider=virtualbox'
 ...
