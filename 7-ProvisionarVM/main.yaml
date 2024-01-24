@@ -1,11 +1,19 @@
 ---
 - name: Executar o sript para execucao do playbook
   hosts: 192.168.1.16
+    vars:
+        vagrant_file: /Users/felipegiffu/Desktop/VMs
   tasks:
     - name: Preparando para provisionar a Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
+    - name: Validando se possui o vagranfile ou será baixado um novo
+      stat:
+        path: '{{ vagrant_file }}'
+      register: register_vagrant_file
     - name: Aguarde em quanto provisionamos a imagem da Maquina Virtual (VM)
       shell: '/usr/local/bin/vagrant init centos/7'
+      when: register_vagrant_file == false
+      ignore_errors: no
     - name: Provisionando Maquina Virtual (VM)
       shell: '/usr/local/bin/vagrant up'
 ...
