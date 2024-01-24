@@ -1,7 +1,6 @@
 ---
 - name: Executar o sript para execucao do playbook
   hosts: 192.168.1.16
-  become: true
   tasks:
     - name: Preparando para provisionar a Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
