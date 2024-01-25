@@ -3,7 +3,7 @@
   hosts: 192.168.1.16
   vars:
     vagrant_file: /Users/felipegiffu/Desktop/VMs
-    script: 
+    script: /Users/felipegiffu/Desktop/VMs/teste.sh
   tasks:
     - name: Preparando para provisionar a Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
@@ -18,6 +18,5 @@
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
     - name: Provisionando Maquina Virtual (VM)
-      command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
-      ignore_errors: true
+      command: sh '{{ script }}'
 ...
