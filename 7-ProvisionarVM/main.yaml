@@ -19,5 +19,6 @@
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
     - name: Provisionando Maquina Virtual (VM)
       shell: sh '{{ script }}'
-      ignore_errors: true
+      register: script
+      failed_when: script.rc not in [ 0, 1 ]
 ...
