@@ -18,6 +18,6 @@
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
     - name: Provisionando Maquina Virtual (VM)
-      shell: 'sh /usr/local/bin/vagrant up'
+      command: sh /usr/local/bin/vagrant up
       ignore_errors: true
 ...
