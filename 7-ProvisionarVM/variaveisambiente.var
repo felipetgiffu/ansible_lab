@@ -1,0 +1,183 @@
+TERM_SESSION_ID=w1t0p0:FB90DCE5-3C96-4DAE-9D47-99814EA71B8C
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.AP90xGKmc7/Listeners
+LC_TERMINAL_VERSION=3.4.23
+COLORFGBG=7;0
+ITERM_PROFILE=Default
+XPC_FLAGS=0x0
+LANG=pt_BR.UTF-8
+PWD=/Users/felipegiffu/Desktop/VMs
+SHELL=/bin/zsh
+__CFBundleIdentifier=com.googlecode.iterm2
+TERM_PROGRAM_VERSION=3.4.23
+TERM_PROGRAM=iTerm.app
+PATH=/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+LC_TERMINAL=iTerm2
+COLORTERM=truecolor
+COMMAND_MODE=unix2003
+TERM=xterm-256color
+HOME=/Users/felipegiffu
+TMPDIR=/var/folders/wj/bwrcpcj90n17swwtsnvn_4940000gn/T/
+USER=felipegiffu
+XPC_SERVICE_NAME=0
+LOGNAME=felipegiffu
+ITERM_SESSION_ID=w1t0p0:FB90DCE5-3C96-4DAE-9D47-99814EA71B8C
+__CF_USER_TEXT_ENCODING=0x0:0:71
+SHLVL=1
+OLDPWD=/Users/felipegiffu/Desktop
+_=/usr/bin/env
+'!'=0
+'#'=0
+'$'=16999
+'*'=(  )
+-=569XZilms
+0=-zsh
+'?'=0
+@=(  )
+ARGC=0
+CDPATH=''
+COLORFGBG='7;0'
+COLORTERM=truecolor
+COLUMNS=168
+COMMAND_MODE=unix2003
+CPUTYPE=x86_64
+EGID=20
+EUID=501
+FIGNORE=''
+FPATH=/usr/local/share/zsh/site-functions:/usr/share/zsh/site-functions:/usr/share/zsh/5.9/functions
+FUNCNEST=700
+GID=20
+HISTCHARS='!^#'
+HISTCMD=1120
+HISTFILE=/Users/felipegiffu/.zsh_history
+HISTSIZE=2000
+HOME=/Users/felipegiffu
+HOST=MacBook-Pro-de-Felipe.local
+IFS=$' \t\n\C-@'
+ITERM_PROFILE=Default
+ITERM_SESSION_ID=w1t0p0:FB90DCE5-3C96-4DAE-9D47-99814EA71B8C
+KEYBOARD_HACK=''
+KEYTIMEOUT=40
+LANG=pt_BR.UTF-8
+LC_TERMINAL=iTerm2
+LC_TERMINAL_VERSION=3.4.23
+LINENO=124
+LINES=36
+LISTMAX=100
+LOGNAME=felipegiffu
+MACHTYPE=x86_64
+MAILCHECK=60
+MAILPATH=''
+MANPATH=''
+MODULE_PATH=/usr/lib/zsh/5.9
+NULLCMD=cat
+OLDPWD=/Users/felipegiffu
+OPTARG=''
+OPTIND=1
+OSTYPE=darwin22.0
+PATH=/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+PPID=16998
+PROMPT='%n@%m %1~ %# '
+PROMPT2='%_> '
+PROMPT3='?# '
+PROMPT4='+%N:%i> '
+PS1='%n@%m %1~ %# '
+PS2='%_> '
+PS3='?# '
+PS4='+%N:%i> '
+PSVAR=''
+PWD=/Users/felipegiffu/Desktop/VMs
+RANDOM=4309
+READNULLCMD=more
+SAVEHIST=1000
+SECONDS=3881
+SHELL=/bin/zsh
+SHLVL=1
+SPROMPT='zsh: correct '\''%R'\'' to '\''%r'\'' [nyae]? '
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.AP90xGKmc7/Listeners
+TERM=xterm-256color
+TERM_PROGRAM=iTerm.app
+TERM_PROGRAM_VERSION=3.4.23
+TERM_SESSION_ID=w1t0p0:FB90DCE5-3C96-4DAE-9D47-99814EA71B8C
+TIMEFMT='%J  %U user %S system %P cpu %*E total'
+TMPDIR=/var/folders/wj/bwrcpcj90n17swwtsnvn_4940000gn/T/
+TMPPREFIX=/tmp/zsh
+TRY_BLOCK_ERROR=-1
+TRY_BLOCK_INTERRUPT=-1
+TTY=/dev/ttys002
+TTYIDLE=1
+UID=501
+USER=felipegiffu
+USERNAME=felipegiffu
+VAGRANT_DEFAULT_PROVIDER=virtualbox
+VENDOR=apple
+WATCH
+WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>'
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+ZLE_LINE_ABORTED=''
+ZSH_ARGZERO=-zsh
+ZSH_EVAL_CONTEXT=toplevel
+ZSH_NAME=zsh
+ZSH_PATCHLEVEL=zsh-5.9-0-g73d3173
+ZSH_SUBSHELL=0
+ZSH_VERSION=5.9
+_=set
+__CFBundleIdentifier=com.googlecode.iterm2
+__CF_USER_TEXT_ENCODING=0x0:0:71
+aliases
+argv=(  )
+builtins
+cdpath=(  )
+commands
+dirstack
+dis_aliases
+dis_builtins
+dis_functions
+dis_functions_source
+dis_galiases
+dis_patchars
+dis_reswords
+dis_saliases
+fignore=(  )
+fpath=( /usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.9/functions )
+funcfiletrace
+funcsourcetrace
+funcstack
+functions
+functions_source
+functrace
+galiases
+histchars='!^#'
+history
+historywords
+jobdirs
+jobstates
+jobtexts
+key=( [Backspace]=$'\C-H' [Delete]=$'\C-[[3~' [Down]=$'\C-[OB' [End]=$'\C-[OF' [F1]=$'\C-[OP' [F10]=$'\C-[[21~' [F11]=$'\C-[[23~' [F12]=$'\C-[[24~' [F13]=$'\C-[[1;2P' [F14]=$'\C-[[1;2Q' [F15]=$'\C-[[1;2R' [F16]=$'\C-[[1;2S' [F17]=$'\C-[[15;2~' [F18]=$'\C-[[17;2~' [F19]=$'\C-[[18;2~' [F2]=$'\C-[OQ' [F20]=$'\C-[[19;2~' [F3]=$'\C-[OR' [F4]=$'\C-[OS' [F5]=$'\C-[[15~' [F6]=$'\C-[[17~' [F7]=$'\C-[[18~' [F8]=$'\C-[[19~' [F9]=$'\C-[[20~' [Home]=$'\C-[OH' [Insert]=$'\C-[[2~' [Left]=$'\C-[OD' [PageDown]=$'\C-[[6~' [PageUp]=$'\C-[[5~' [Right]=$'\C-[OC' [Up]=$'\C-[OA' )
+keymaps
+mailpath=(  )
+manpath=(  )
+module_path=( /usr/lib/zsh/5.9 )
+modules
+nameddirs
+options
+parameters
+patchars
+path=( /usr/local/bin /System/Cryptexes/App/usr/bin /usr/bin /bin /usr/sbin /sbin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin )
+pipestatus=( 0 )
+prompt='%n@%m %1~ %# '
+psvar=(  )
+reswords
+saliases
+signals=( EXIT HUP INT QUIT ILL TRAP ABRT EMT FPE KILL BUS SEGV SYS PIPE ALRM TERM URG STOP TSTP CONT CHLD TTIN TTOU IO XCPU XFSZ VTALRM PROF WINCH INFO USR1 USR2 ZERR DEBUG )
+status=0
+termcap
+terminfo
+userdirs
+usergroups
+watch
+widgets
+zle_bracketed_paste=( $'\C-[[?2004h' $'\C-[[?2004l' )
+zsh_eval_context=( toplevel )
+zsh_scheduled_events
+felipegiffu@MacBook-Pro-de-Felipe ansible-sc
