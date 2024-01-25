@@ -17,4 +17,5 @@
       ignore_errors: no
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       shell: '/usr/local/bin/vagrant up --provider=virtualbox &&'
+      shell: "(cd /Users/felipegiffu/Desktop/VMs ; ./teste.sh)"
 ...
