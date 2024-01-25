@@ -17,7 +17,9 @@
       ignore_errors: no
     - name: Aguarde em quanto provisionamos a imagem da Maquina Virtual (VM)
       shell: 'VAGRANT_DEFAULT_PROVIDER=virtualbox && echo $VAGRANT_DEFAULT_PROVIDER && cd /Users/felipegiffu/Desktop/VMs && /usr/local/bin/vagrant up'
-    
+      register: process_httpd
+    - debug:
+        var: process_httpd    
   #  - name: Iniciando o provisionamento da Maquina Virtual (VM)
   #    shell: "(cd /Users/felipegiffu/Desktop/VMs ; ./teste.sh)"
   #    shell: "su - felipegiffu -c /Users/felipegiffu/Desktop/VMs/teste.sh)"
