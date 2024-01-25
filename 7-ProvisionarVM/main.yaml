@@ -20,8 +20,9 @@
       shell: '/tmp/teste.sh'
       register: process_httpd
       ignore_errors: yes
-    - debug:
-        var: process_httpd    
+    - name: DEBUG LOG
+      debug:
+        var: process_httpd.stdout_lines 
   #  - name: Iniciando o provisionamento da Maquina Virtual (VM)
   #    shell: "(cd /Users/felipegiffu/Desktop/VMs ; ./teste.sh)"
   #    shell: "su - felipegiffu -c /Users/felipegiffu/Desktop/VMs/teste.sh)"
