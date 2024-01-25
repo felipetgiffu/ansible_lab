@@ -18,4 +18,6 @@
       shell: '/Users/felipegiffu/ansible-scripts/provisionamentovm.sh'
       register: process_httpd
       ignore_errors: yes
+    - debug:
+        msg: O PROVISIONAMENTO DA NOVA VM FOI REALIZADO COM SUCESSO
 ...
