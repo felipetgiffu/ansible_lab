@@ -19,6 +19,7 @@
   #    shell: "(cd /Users/felipegiffu/Desktop/VMs ; ./teste.sh)"
   #    shell: "su - felipegiffu -c /Users/felipegiffu/Desktop/VMs/teste.sh)"
   #    command: sh '{{ script }}'
-      shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
-      ignore_errors: yes
+  #    shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
+      command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
+
 ...
