@@ -16,10 +16,10 @@
       when: register_vagrant_file == false
       ignore_errors: no
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
-  #    shell: "(cd /Users/felipegiffu/Desktop/VMs ; ./teste.sh)"
+      shell: "(cd /Users/felipegiffu/Desktop/VMs ; ./teste.sh)"
   #    shell: "su - felipegiffu -c /Users/felipegiffu/Desktop/VMs/teste.sh)"
   #    command: sh '{{ script }}'
   #    shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
   #    shell: "cd /Users/felipegiffu/Desktop/VMs 2>&1 | ./teste.sh"
-      command: cd /Users/felipegiffu/Desktop/VMs 2>&1 | ./teste.sh
+  #    command: cd /Users/felipegiffu/Desktop/VMs 2>&1 | ./teste.sh
 ...
