@@ -22,8 +22,6 @@
   #    shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
       command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
       register: result
-      
-  rescue:
     - debug:
         var: result
 ...
