@@ -21,8 +21,8 @@
   #    command: sh '{{ script }}'
   #    shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
       command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
-      register: swap_exists
-      failed_when: swap_exists.rc = 1 and swap_exists.rc = 0
-      check_mode: false
-
+        register: result
+      rescue:
+        - debug:
+            var: result
 ...
