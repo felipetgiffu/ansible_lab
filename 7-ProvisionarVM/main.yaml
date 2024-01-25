@@ -17,8 +17,8 @@
       ignore_errors: no
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       shell:
-            cmd: su - felipegiffu -c "/Users/felipegiffu/Desktop/VMs/teste.sh -all"
-          register: teste
-        - debug:
-            var: teste
+        cmd: su - felipegiffu -c "/Users/felipegiffu/Desktop/VMs/teste.sh -all"
+      register: teste
+    - debug:
+        var: teste
 ...
