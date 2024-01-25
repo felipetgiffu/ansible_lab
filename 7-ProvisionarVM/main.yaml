@@ -17,7 +17,7 @@
       ignore_errors: no
     - name: Aguarde em quanto provisionamos a imagem da Maquina Virtual (VM)
     #  command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
-      shell: '/tmp/teste.sh'
+      shell: '/Users/felipegiffu/ansible-scripts/teste.sh'
       register: process_httpd
       ignore_errors: yes
     - name: DEBUG LOG
