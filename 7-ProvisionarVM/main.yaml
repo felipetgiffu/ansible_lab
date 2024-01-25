@@ -16,7 +16,7 @@
       when: register_vagrant_file == false
       ignore_errors: no
     - name: Aguarde em quanto provisionamos a imagem da Maquina Virtual (VM)
-      shell: '/Users/felipegiffu/Desktop/VMs/teste.sh'
+      command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
       register: process_httpd
       ignore_errors: yes
     - debug:
