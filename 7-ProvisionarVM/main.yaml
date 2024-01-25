@@ -16,8 +16,5 @@
       when: register_vagrant_file == false
       ignore_errors: no
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
-      shell: 'cd /Users/felipegiffu/Desktop/VMs'
-    - name: Provisionando Maquina Virtual (VM)
-      shell: sh '{{ script }}'
-      ignore_errors: yes
+      shell: 'cd /Users/felipegiffu/Desktop/VMs' && './teste.sh'
 ...
