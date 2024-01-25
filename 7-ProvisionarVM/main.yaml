@@ -18,5 +18,5 @@
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       shell: 'cd /Users/felipegiffu/Desktop/VMs'
     - name: Provisionando Maquina Virtual (VM)
-      command: sh '{{ script }}'
+      shell: sh '{{ script }}'
 ...
