@@ -17,5 +17,5 @@
       ignore_errors: no
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
       command: sh '{{ script }}'
-      ignore_errors: no
+      ignore_errors: yes
 ...
