@@ -18,5 +18,5 @@
     - name: Iniciando o provisionamento da Maquina Virtual (VM)
   #    shell: "(cd /Users/felipegiffu/Desktop/VMs ; ./teste.sh)"
   #    shell: "su - felipegiffu -c /Users/felipegiffu/Desktop/VMs/teste.sh)"
-       command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
+        command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
 ...
