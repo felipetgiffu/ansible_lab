@@ -21,5 +21,6 @@
   #    command: sh '{{ script }}'
   #    shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
   #    shell: "cd /Users/felipegiffu/Desktop/VMs 2>&1 | ./teste.sh"
-      command: cd /Users/felipegiffu/Desktop/VMs 2>&1 | ./teste.sh
+  #    command: cd /Users/felipegiffu/Desktop/VMs 2>&1 | ./teste.sh
+     shell: "(cd /Users/felipegiffu/Desktop/VMs ; 'nohup /usr/local/bin/vagrant up &'
 ...
