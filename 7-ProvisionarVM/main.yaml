@@ -21,5 +21,7 @@
   #    command: sh '{{ script }}'
   #    shell: './Users/felipegiffu/Desktop/VMs/teste.sh'
       command: sh /Users/felipegiffu/Desktop/VMs/teste.sh
+      register: wp
+      failed_when: “wp.rc not in [ 0, 1 ]”
 
 ...
