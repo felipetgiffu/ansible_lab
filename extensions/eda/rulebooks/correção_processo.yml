@@ -1,0 +1,9 @@
+  - name: Correção do processo através do EDA
+    hosts: all
+    tasks:
+      - name: Start no serviço httpd
+        service:
+          name: httpd
+          state: started
+          enabled: yes
+...
