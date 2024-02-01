@@ -1,6 +1,6 @@
 ---
 - name: Remediacao Automatica do Servidor com processo down
-  hosts: all
+  hosts: localhost
   sources:
     - name: listen for alerts
       ansible.eda.alertmanager:
