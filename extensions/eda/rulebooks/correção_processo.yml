@@ -1,5 +1,5 @@
   - name: Correção através do EDA para processo DOWN
-    hosts: all
+    hosts: localhost
     tasks:
       - name: Start no serviço tuned.service
         service:
