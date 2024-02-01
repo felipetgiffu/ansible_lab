@@ -1,9 +1,9 @@
-  - name: Correção do processo através do EDA
+  - name: Correção através do EDA para processo DOWN
     hosts: all
     tasks:
-      - name: Start no serviço httpd
+      - name: Start no serviço tuned.service
         service:
-          name: httpd
+          name: tuned.service
           state: started
           enabled: yes
 ...
