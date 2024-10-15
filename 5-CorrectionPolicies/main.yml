@@ -29,12 +29,12 @@
           regexp: '^%wheel'
         ignore_errors: yes
 
-#########  Mensagem de boas vindas/alerta da empresa ao logar no servidor
-      - name: Atualizando mensagme de boas vindas/alerta ao logar no servidor
-        ansible.builtin.lineinfile:
-          path: /etc/motd
-          line: "Seja bem vindo ao $(hostname). Pedimos que seja prudente na utilização do sistema e em caso de dúvida entre em contato com o time de suporte através do ramal 1234"
-          create: yes
+##########  Mensagem de boas vindas/alerta da empresa ao logar no servidor
+#      - name: Atualizando mensagme de boas vindas/alerta ao logar no servidor
+#        ansible.builtin.lineinfile:
+#          path: /etc/motd
+#          line: "Seja bem vindo ao $(hostname). Pedimos que seja prudente na utilização do sistema e em caso de dúvida entre em contato com o time de suporte através do ramal 1234"
+#          create: yes
 
 
 ######### Remove arquivos do /tmp com mais de 1 mês
