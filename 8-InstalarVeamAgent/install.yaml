@@ -7,5 +7,5 @@
       shell: sudo yum install https://repository.veeam.com/backup/linux/agent/rpm/el/8/x86_64/veeam-release-el8-1.0.7-1.x86_64.rpm
 ########### INSTALAR O VEAM AGENT ##############
     - name: Instalando o repositorio do veam
-      shell: yum install veeam
+      shell: yum install --nogpgcheck veeam
 ###############################################
