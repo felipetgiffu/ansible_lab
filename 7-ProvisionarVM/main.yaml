@@ -1,6 +1,6 @@
 ---
 - name: Executar o sript para execucao do playbook
-  hosts: 192.168.15.14
+  hosts: 192.168.15.12
   vars:
     vagrant_file: /Users/felipegiffu/ansible-scripts
   tasks:
